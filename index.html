@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Connector Demo</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/public/favicon/apple-icon-180x180.png"
+    />
+    <link
+      type="image/png"
+      sizes="512x512"
+      href="/public/favicon/android-chrome-512x512.png"
+    />
+    <link
+      type="image/png"
+      sizes="192x192"
+      href="/public/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/public/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./src/assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/public/favicon/favicon-16x16.png"
+    />
+  </head>
+  <body>
+    <div class="layout-wrapper">
+      <div id="instructions-section" class="instructions-section">
+        <div id="instructions-container" class="instructions-container"></div>
+      </div>
+
+      <div id="device">
+        <div id="frame">
+          <div id="frame-content">
+            <iframe width="300" height="650" id="device-frame"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div id="action-bar" class="action-bar">
+        <button id="action-button" class="button">Continue</button>
+        <div id="action-text"></div>
+        <button
+          id="download-logs-button"
+          class="button button--small button--outline button--margin-right">
+          <i class="icon icon--arrow-down"></i>Download Logs
+        </button>
+        <button id="config-button" class="button button--small button--outline">
+          <i class="icon icon--gear"></i>Config
+        </button>
+      </div>
+    </div>
+
+    <div id="config-panel" class="modal">
+      <div class="modal__window">
+        <div id="close-button" class="modal__close">
+          <i class="icon icon--close"></i>
+        </div>
+        <h2 class="modal__title">Config</h2>
+        <div class="modal__body">
+          <form id="config-form"></form>
+        </div>
+        <div class="modal__footer">
+          <div id="cancel-config" class="button button--ghost">Cancel</div>
+          <div id="apply-config" class="button">Apply Changes</div>
+        </div>
+      </div>
+    </div>
+    <div id="pubnet-disclaimer">
+      WARNING: THIS IS A TECHNICAL DEMO. IF YOU DON'T KNOW WHAT YOU'RE DOING
+      LEAVE IMMEDIATELY. SCAMMERS CAN USE IT TO ACCESS YOUR FUNDS.
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
