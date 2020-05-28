@@ -14,6 +14,7 @@ const fields = JSON.parse(params.get("fields"));
     field.type = "text";
     field.className = "field";
     field.placeholder = key;
+    field.value = key;
     field.name = `${section}#${key}`;
     div.appendChild(field);
     container.appendChild(div);

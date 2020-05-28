@@ -4,7 +4,7 @@ const prop = require("lodash.get");
 
 module.exports = {
   instruction: "Check /info endpoint to see if we need to authenticate",
-  action: "GET /info (SEP-0006)",
+  action: "GET /info (SEP-0031)",
   execute: async function(state, { request, response, instruction, expect }) {
     const send_server = state.send_server;
     request("GET /info");
@@ -36,5 +36,9 @@ module.exports = {
     state.fields = result.send[state.asset_code].fields;
 
     instruction("Send is enabled for asset " + state.asset_code);
+    response(
+      "The receiving anchor requires the following fields",
+      state.fields,
+    );
   },
 };

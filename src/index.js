@@ -64,6 +64,7 @@ const steps = [
   require("./steps/SEP10/start"),
   require("./steps/SEP10/sign"),
   require("./steps/SEP10/send"),
+  require("./steps/send/post_send.js"),
 ];
 
 uiActions.instruction("Initiate a direct payment request");

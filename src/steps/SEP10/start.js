@@ -4,7 +4,7 @@ const StellarSDK = require("stellar-sdk");
 
 module.exports = {
   instruction:
-    "Start the SEP-0010 flow to authenticate the wallet's Stellar account",
+    "Start the SEP-0010 flow to authenticate the sending anchor's Stellar account",
   action: "GET /auth (SEP-0010)",
   execute: async function(state, { request, response, instruction, expect }) {
     const USER_SK = Config.get("SENDER_SK");

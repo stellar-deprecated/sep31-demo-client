@@ -3,7 +3,7 @@ const StellarSdk = require("stellar-sdk");
 
 module.exports = {
   instruction:
-    "We've received a challenge transaction from the server that we need the client to sign with our Stellar account.",
+    "We've received a challenge transaction from the server that we need the sending anchor to sign with their Stellar private key.",
   action: "Sign Challenge (SEP-0010)",
   execute: async function(state, { logObject }) {
     const USER_SK = Config.get("SENDER_SK");
