@@ -8,6 +8,7 @@ const StellarSdk = require("stellar-sdk");
  * State maintained between steps
  * @typedef {Object} State
  * @property {StellarSdk.Network} network - Stellar network to operate on
+ * @property {string} horizonURL - Horizon URL to use
  *
  * From stellar.toml
  * @property {string} auth_server - URL hosting the SEP10 auth server
@@ -22,7 +23,11 @@ const StellarSdk = require("stellar-sdk");
  * @property {object} fields - Fields required from sending anchors /info endpoint
  * @property {object} field_values - User inputted field values that match the above fields descriptions
  * @property {string} asset_code - asset code for sending
+ * @property {string} asset_issuer - asset issuer for sending
+ * @property {string} send_memo - memo to use when sending payment
+ * @property {string} send_memo_type - memo type to use when sending payment
  * @property {string} transaction_id - Anchor identifier for transaction
+ * @property {string} receiver_address - The Stellar public key for the receiving anchor
  *
  */
 
@@ -42,14 +47,7 @@ Config.listen(() => {
     disclaimer.classList.remove("visible");
     state.network = StellarSdk.Networks.TESTNET;
   }
-  try {
-    const sk = Config.get("USER_SK");
-    const pair = StellarSdk.Keypair.fromSecret(sk);
-    console.log("Wallet address: ", pair.publicKey());
-  } catch (e) {
-    console.log("No wallet address yet");
-    // do nothing if secret key isn't here yet
-  }
+  state.horizonURL = Config.get("HORIZON_URL");
 });
 
 Config.installUI(document.querySelector("#config-panel"));
@@ -59,12 +57,14 @@ if (!Config.isValid()) {
 
 const steps = [
   require("./steps/send/check_toml"),
-  require("./steps/send/check_info.js"),
-  require("./steps/send/collect_info.js"),
+  require("./steps/send/check_info"),
+  require("./steps/send/collect_info"),
   require("./steps/SEP10/start"),
   require("./steps/SEP10/sign"),
   require("./steps/SEP10/send"),
-  require("./steps/send/post_send.js"),
+  require("./steps/send/post_send"),
+  require("./steps/send/poll_transaction"),
+  require("./steps/send/send_payment"),
 ];
 
 uiActions.instruction("Initiate a direct payment request");
