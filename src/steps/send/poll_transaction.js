@@ -23,6 +23,7 @@ module.exports = {
       let result = await resp.json();
       response("GET /transaction", result);
       transactionStatus = result.transaction.status;
+      await new Promise((resolve) => setTimeout(resolve), 2000);
     }
   },
 };

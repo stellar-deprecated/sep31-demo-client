@@ -48,7 +48,7 @@ let fields = [
   {
     key: "HORIZON_URL",
     label: "Horizon instance URL to use",
-    value: "https://horizon.stellar.org",
+    value: "https://horizon-testnet.stellar.org",
   },
   {
     key: "STRICT_MODE",
