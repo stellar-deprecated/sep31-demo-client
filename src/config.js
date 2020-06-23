@@ -36,6 +36,21 @@ let fields = [
     },
   },
   {
+    key: "ASSET_CODE",
+    label: "Asset for sending",
+    value: null,
+  },
+  {
+    key: "ASSET_ISSUER",
+    label: "Asset issuer for sending",
+    value: null,
+  },
+  {
+    key: "HORIZON_URL",
+    label: "Horizon instance URL to use",
+    value: "https://horizon.stellar.org",
+  },
+  {
     key: "STRICT_MODE",
     label: "Strict Mode: Abort the flow when an error is thrown",
     value: true,
