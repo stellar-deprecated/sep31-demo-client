@@ -11,7 +11,7 @@ module.exports = {
     const result = await get(`${send_server}/info`);
     response("GET /info", result);
     expect(result.receive, "/info response needs a `receive` property");
-    state.asset_code = result.receive[Config.get("ASSET_CODE")];
+    state.asset_code = Config.get("ASSET_CODE");
     expect(
       state.asset_code,
       `Could not find asset code ${Config.get("ASSET_CODE")} in /info response`,

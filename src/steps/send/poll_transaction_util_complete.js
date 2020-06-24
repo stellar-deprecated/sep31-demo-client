@@ -1,12 +1,14 @@
 module.exports = {
   instruction:
-    "Poll /transaction endpoint until transaction status is 'pending_sender'",
+    "Poll /transaction endpoint until transaction status reaches end status",
   action: "GET /transaction (SEP-0031)",
   execute: async function(state, { request, response, instruction, expect }) {
     const send_server = state.send_server;
     const params = { id: state.transaction_id };
     let transactionStatus;
-    while (transactionStatus !== "pending_sender") {
+    while (
+      !["pending_external", "completed", "error"].includes(transactionStatus)
+    ) {
       request("GET /transaction", params);
       const resp = await fetch(
         `${send_server}/transaction?` + new URLSearchParams(params).toString(),
@@ -23,7 +25,7 @@ module.exports = {
       let result = await resp.json();
       response("GET /transaction", result);
       transactionStatus = result.transaction.status;
-      await new Promise((resolve) => setTimeout(resolve), 2000);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
     }
   },
 };
