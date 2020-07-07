@@ -13,6 +13,7 @@ const StellarSdk = require("stellar-sdk");
  * From stellar.toml
  * @property {string} auth_server - URL hosting the SEP10 auth server
  * @property {string} send_server - URL hosting the SEP31 DIRECT_PAYMENT_SERVER
+ * @property {string} kyc_server - URL hosting the SEP12 KYC_SERVER
  *
  * SEP10
  * @property {string} challenge_transaction - XDR Representation of Stellar challenge transaction signed by server only
@@ -21,13 +22,21 @@ const StellarSdk = require("stellar-sdk");
  *
  * Send
  * @property {object} fields - Fields required from sending anchors /info endpoint
- * @property {object} field_values - User inputted field values that match the above fields descriptions
+ * @property {object} all_field_values - User inputted field values that match fields, sender_sep12_fields, and receiver_sep12_fields
  * @property {string} asset_code - asset code for sending
  * @property {string} asset_issuer - asset issuer for sending
  * @property {string} send_memo - memo to use when sending payment
  * @property {string} send_memo_type - memo type to use when sending payment
  * @property {string} transaction_id - Anchor identifier for transaction
  * @property {string} receiver_address - The Stellar public key for the receiving anchor
+ * @property {string} sender_sep12_type - The matching attribute from receiving anchor's /info response
+ * @property {string} receiver_sep12_type - The matching attribute from receiving anchor's /info response
+ * @property {string} sender_sep12_fields - The 'fields' object returned from GET /customer for the sender
+ * @property {string} receiver_sep12_fields - The 'fields' object returned from GET /customer for the receiver
+ * @property {string} sender_sep12_memo - The hash memo used in GET and PUT SEP12 requests for the sender
+ * @property {string} receiver_sep12_memo - The hash memo used in GET and PUT SEP12 requests for the receiver
+ * @property {string} sender_sep12_id - The ID returned from a PUT /customer request for the sender
+ * @property {string} receiver_sep12_id - The ID returned from a PUT /customer request for the receiver
  *
  */
 
@@ -58,10 +67,12 @@ if (!Config.isValid()) {
 const steps = [
   require("./steps/send/check_toml"),
   require("./steps/send/check_info"),
-  require("./steps/send/collect_info"),
   require("./steps/SEP10/start"),
   require("./steps/SEP10/sign"),
   require("./steps/SEP10/send"),
+  require("./steps/send/get_sep12_fields"),
+  require("./steps/send/collect_info"),
+  require("./steps/send/put_sep12_fields"),
   require("./steps/send/post_send"),
   require("./steps/send/poll_transaction_util_ready"),
   require("./steps/send/send_payment"),

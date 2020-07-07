@@ -25,18 +25,14 @@ module.exports = {
       "No `fields` object specified in /info",
     );
     expect(
-      prop(result, ["receive", state.asset_code, "fields", "sender"]),
-      "No sender fields specified",
-    );
-    expect(
-      prop(result, ["receive", state.asset_code, "fields", "receiver"]),
-      "No receiver fields specified",
-    );
-    expect(
       prop(result, ["receive", state.asset_code, "fields", "transaction"]),
       "No transaction fields specified",
     );
     state.fields = result.receive[state.asset_code].fields;
+    state.sender_sep12_type =
+      result.receive[state.asset_code].sender_sep12_type;
+    state.receiver_sep12_type =
+      result.receive[state.asset_code].receiver_sep12_type;
 
     instruction("Send is enabled for asset " + state.asset_code);
     response(

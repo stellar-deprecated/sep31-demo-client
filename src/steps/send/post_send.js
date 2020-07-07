@@ -4,7 +4,9 @@ module.exports = {
   execute: async function(state, { request, response, instruction, expect }) {
     const send_server = state.send_server;
     const body = {
-      fields: state.field_values,
+      sender_id: state.sender_sep12_id,
+      receiver_id: state.receiver_sep12_id,
+      fields: { transaction: state.all_field_values.transaction },
       asset_code: state.asset_code,
       amount: 100,
     };
