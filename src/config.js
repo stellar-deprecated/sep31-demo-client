@@ -98,11 +98,11 @@ const load = () => {
   fields.forEach((field) => {
     let hashValue = hashFields[field.key];
     if (hashValue) hashValue = JSON.parse(decodeURI(hashValue));
-    // Prefer query param but fall back to local storage
+    // Prefer query param but fall back to local storage or default value
     field.value =
       hashValue !== undefined
         ? hashValue
-        : JSON.parse(localStorage.getItem(field.key));
+        : JSON.parse(localStorage.getItem(field.key)) || field.value;
     field.element.value = field.value;
     field.element.checked = field.value;
   });
