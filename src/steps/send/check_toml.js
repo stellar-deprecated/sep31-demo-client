@@ -25,6 +25,7 @@ module.exports = {
       );
       state.auth_endpoint = information.WEB_AUTH_ENDPOINT;
       state.send_server = information.DIRECT_PAYMENT_SERVER;
+      state.kyc_server = information.KYC_SERVER;
     } catch (e) {
       console.error(e);
       response(`${HOME_DOMAIN}/.well-known/stellar.toml`, text);
