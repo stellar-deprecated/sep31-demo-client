@@ -7,6 +7,7 @@ module.exports = {
   action: "Show field collection form",
   execute: async function(state, { response, setDevicePage }) {
     const allFields = {
+      amount: { amount: { description: "amount to send" } },
       transaction: state.fields.transaction,
       sender: state.sender_sep12_fields,
       receiver: state.receiver_sep12_fields,

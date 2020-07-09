@@ -8,7 +8,7 @@ module.exports = {
       receiver_id: state.receiver_sep12_id,
       fields: { transaction: state.all_field_values.transaction },
       asset_code: state.asset_code,
-      amount: 100,
+      amount: state.all_field_values.amount.amount,
     };
     request("POST /send", body);
     const resp = await fetch(`${send_server}/send`, {

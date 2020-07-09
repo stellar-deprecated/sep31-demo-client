@@ -2,7 +2,8 @@ import "./wallet.scss";
 import "./collect-fields.scss";
 const params = new URLSearchParams(window.location.search);
 const fields = JSON.parse(params.get("fields"));
-["sender", "receiver", "transaction"].forEach((section) => {
+
+["amount", "sender", "receiver", "transaction"].forEach((section) => {
   const container = document.querySelector(`#${section}-fields`);
   for (let [key, value] of Object.entries(fields[section])) {
     const div = document.createElement("div");
@@ -24,6 +25,7 @@ const fields = JSON.parse(params.get("fields"));
 document.querySelector("#submit").addEventListener("click", () => {
   const fields = document.querySelectorAll("input.field");
   const values = {
+    amount: {},
     sender: {},
     receiver: {},
     transaction: {},
