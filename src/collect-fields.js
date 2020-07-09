@@ -2,12 +2,10 @@ import "./wallet.scss";
 import "./collect-fields.scss";
 const params = new URLSearchParams(window.location.search);
 const fields = JSON.parse(params.get("fields"));
-console.log(fields);
+
 ["amount", "sender", "receiver", "transaction"].forEach((section) => {
-  console.log(section);
   const container = document.querySelector(`#${section}-fields`);
   for (let [key, value] of Object.entries(fields[section])) {
-    console.log(key, value);
     const div = document.createElement("div");
     div.className = "field-container";
     const label = document.createElement("label");
