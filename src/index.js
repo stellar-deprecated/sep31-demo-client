@@ -22,7 +22,7 @@ const StellarSdk = require("stellar-sdk");
  *
  * Send
  * @property {object} fields - Fields required from sending anchors /info endpoint
- * @property {object} all_field_values - User inputted field values that match fields, sender_sep12_fields, and receiver_sep12_fields
+ * @property {object} all_field_values - User inputted field values that match fields, sender_sep12_fields, and receiver_sep12_fields, amount
  * @property {string} asset_code - asset code for sending
  * @property {string} asset_issuer - asset issuer for sending
  * @property {string} send_memo - memo to use when sending payment

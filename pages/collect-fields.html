@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style></style>
+  </head>
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style></style>
-</head>
+  <body>
+    <div class="header">
+      <h1 class="header__title">Collect Info</h1>
+    </div>
+    <div class="container" id="fields">
+      <h2>Amount</h2>
+      <div class="field-set" id="amount-fields"></div>
 
-<body>
-  <div class="header">
-    <h1 class="header__title">Collect Info</h1>
+      <h2>Sender</h2>
+      <div class="field-set" id="sender-fields"></div>
 
-  </div>
-  <div class="container" id="fields">
-    <h2>Sender</h2>
-    <div class="field-set" id="sender-fields"></div>
+      <h2>Receiver</h2>
+      <div class="field-set" id="receiver-fields"></div>
 
-    <h2>Receiver</h2>
-    <div class="field-set" id="receiver-fields"></div>
+      <h2>Transaction</h2>
+      <div class="field-set" id="transaction-fields"></div>
+    </div>
 
-    <h2>Transaction</h2>
-    <div class="field-set" id="transaction-fields"></div>
-  </div>
-
-  <div class="container send-confirmation-buttons">
-    <button id="submit" class="active button">
-      Submit
-    </button>
-  </div>
-</body>
-<script src="/collect.js"></script>
-
+    <div class="container send-confirmation-buttons">
+      <button id="submit" class="active button">
+        Submit
+      </button>
+    </div>
+  </body>
+  <script src="/collect.js"></script>
 </html>
