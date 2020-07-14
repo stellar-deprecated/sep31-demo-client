@@ -12,7 +12,7 @@ module.exports = {
       Config.get("ASSET_ISSUER"),
     );
     const account = await server.loadAccount(keypair.publicKey());
-    const amount = state.all_field_values.amount.amount;
+    const amount = Number(state.all_field_values.amount.amount);
     accountBalance = account.balances.find(
       (b) =>
         b.asset_code === asset.getCode() &&
@@ -32,7 +32,7 @@ module.exports = {
     }
     // TODO: if balance is insufficient, add amount of requested asset
     expect(
-      accountBalance && accountBalance.balance >= amount,
+      accountBalance && Number(accountBalance.balance) >= amount,
       `The sending anchor doesn't have enough ${state.asset_code}!`,
     );
     const hexMemo = Buffer.from(state.send_memo, "base64").toString("hex");
