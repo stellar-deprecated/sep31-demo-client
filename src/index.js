@@ -73,7 +73,7 @@ const steps = [
   require("./steps/send/get_sep12_fields"),
   require("./steps/send/collect_info"),
   require("./steps/send/put_sep12_fields"),
-  require("./steps/send/post_send"),
+  require("./steps/send/post_transactions"),
   require("./steps/send/poll_transaction_util_ready"),
   require("./steps/send/send_payment"),
   require("./steps/send/poll_transaction_util_complete"),
