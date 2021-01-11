@@ -55,6 +55,7 @@ async function collectSEP12Fields(
   const result = await get(`${state.kyc_server}/customer?`, params, {
     headers: {
       Authorization: `Bearer ${state.token}`,
+      Origin: "https://sep31-demo-client.netlify.app",
     },
   });
   response("GET /customer", result);
