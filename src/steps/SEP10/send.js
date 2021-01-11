@@ -10,12 +10,13 @@ module.exports = {
       transaction: transaction.toEnvelope().toXDR("base64"),
     };
     request("POST /auth", params);
+    let urlParams = new URLSearchParams(params);
     const result = await fetch(AUTH_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: `transaction=${params.transaction}`,
+      body: urlParams.toString(),
     });
     const json = await result.json();
     response("POST /auth", json);
