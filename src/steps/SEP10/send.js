@@ -13,9 +13,9 @@ module.exports = {
     const result = await fetch(AUTH_URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify(params),
+      body: `transaction=${params.transaction}`,
     });
     const json = await result.json();
     response("POST /auth", json);
