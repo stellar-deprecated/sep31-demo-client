@@ -38,21 +38,19 @@ module.exports = {
     let memo;
     try {
       const memoType = {
-        text: StellarSdk.Memo.text,
-        id: StellarSdk.Memo.id,
-        hash: StellarSdk.Memo.hash,
-      }[state.stellar_memo_type];
-      if (state.stellar_memo_type == "hash") {
-        memo = memoType(
-          Buffer.from(state.stellar_memo, "base64").toString("hex"),
-        );
+        text: StellarSDK.Memo.text,
+        id: StellarSDK.Memo.id,
+        hash: StellarSDK.Memo.hash,
+      }[state.send_memo_type];
+      if (state.send_memo_type == "hash") {
+        memo = memoType(Buffer.from(state.send_memo, "base64").toString("hex"));
       } else {
-        memo = memoType(state.stellar_memo);
+        memo = memoType(state.send_memo);
       }
     } catch (e) {
       expect(
         false,
-        `The memo '${state.stellar_memo}' could not be encoded to type ${state.stellar_memo_type}`,
+        `The memo '${state.send_memo}' could not be encoded to type ${state.send_memo_type}`,
       );
     }
     let tx = new StellarSDK.TransactionBuilder(account, {
