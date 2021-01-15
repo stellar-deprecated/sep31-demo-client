@@ -35,7 +35,26 @@ module.exports = {
       accountBalance && Number(accountBalance.balance) >= amount,
       `The sending anchor doesn't have enough ${state.asset_code}!`,
     );
-    const hexMemo = Buffer.from(state.send_memo, "base64").toString("hex");
+    let memo;
+    try {
+      const memoType = {
+        text: StellarSdk.Memo.text,
+        id: StellarSdk.Memo.id,
+        hash: StellarSdk.Memo.hash,
+      }[state.stellar_memo_type];
+      if (state.stellar_memo_type == "hash") {
+        memo = memoType(
+          Buffer.from(state.stellar_memo, "base64").toString("hex"),
+        );
+      } else {
+        memo = memoType(state.stellar_memo);
+      }
+    } catch (e) {
+      expect(
+        false,
+        `The memo '${state.stellar_memo}' could not be encoded to type ${state.stellar_memo_type}`,
+      );
+    }
     let tx = new StellarSDK.TransactionBuilder(account, {
       fee: StellarSDK.BASE_FEE * 5,
       networkPassphrase: state.network,
@@ -50,7 +69,7 @@ module.exports = {
           ),
         }),
       )
-      .addMemo(new StellarSDK.Memo(state.send_memo_type, hexMemo))
+      .addMemo(memo)
       .setTimeout(30)
       .build();
     tx.sign(keypair);
