@@ -21,7 +21,7 @@ module.exports = {
     });
 
     expect(
-      resp.status === 200,
+      [200, 201].includes(resp.status),
       `POST /transactions responded with status ${resp.status}`,
     );
     const result = await resp.json();
