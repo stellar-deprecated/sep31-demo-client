@@ -28,7 +28,7 @@
     "node-sass": "^4.12.0",
     "renderjson": "^1.4.0",
     "sass-loader": "^7.2.0",
-    "stellar-sdk": "^5",
+    "stellar-sdk": "^8",
     "toml": "^3.0.0"
   },
   "husky": {
